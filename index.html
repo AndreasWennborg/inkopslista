@@ -12,25 +12,35 @@
 <body>
   <main class="app">
     <header class="app-header">
+      <button id="sound-toggle" type="button" class="sound-toggle" aria-label="Stäng av ljud" title="Stäng av ljud">🔊</button>
       <h1><span aria-hidden="true">🛒</span> Inköpslistan</h1>
       <p class="tagline">Skriv upp, handla, bocka av!</p>
     </header>
 
     <form id="add-form" class="add-form" autocomplete="off">
-      <label for="item-input" class="visually-hidden">Ny vara</label>
-      <input
-        id="item-input"
-        type="text"
-        placeholder="Vad behöver du köpa?"
-        maxlength="100"
-        enterkeyhint="done"
-      >
+      <div class="input-wrap">
+        <label for="item-input" class="visually-hidden">Ny vara</label>
+        <input
+          id="item-input"
+          type="text"
+          placeholder="Vad behöver du köpa?"
+          maxlength="100"
+          enterkeyhint="done"
+          autocapitalize="sentences"
+          spellcheck="false"
+        >
+        <ul id="suggestions" class="suggestions" role="listbox" aria-label="Förslag" hidden></ul>
+      </div>
+      <label for="category-select" class="visually-hidden">Kategori</label>
+      <select id="category-select" class="category-select">
+        <option value="auto">✨ Automatisk kategori</option>
+      </select>
       <button type="submit" class="btn btn-primary">Lägg till</button>
     </form>
 
     <p id="summary" class="summary" aria-live="polite"></p>
 
-    <ul id="list" class="list"></ul>
+    <div id="list" class="groups"></div>
 
     <p id="empty" class="empty" hidden>
       <span aria-hidden="true">🍓</span> Listan är tom, dags att handla något gott!
@@ -39,6 +49,19 @@
     <button id="clear-done" type="button" class="btn btn-secondary">Rensa avbockade</button>
   </main>
 
+  <dialog id="confirm-dialog" class="dialog" aria-labelledby="confirm-title">
+    <form method="dialog">
+      <h2 id="confirm-title"><span aria-hidden="true">🧹</span> Rensa listan?</h2>
+      <p id="confirm-text"></p>
+      <div class="dialog-buttons">
+        <button value="avbryt" class="btn btn-ghost">Avbryt</button>
+        <button value="rensa" class="btn btn-primary">Ja, rensa</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="kategorier.js"></script>
+  <script src="forslag.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
