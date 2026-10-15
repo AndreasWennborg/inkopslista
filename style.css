@@ -1,0 +1,272 @@
+:root {
+  --bg: #fff4e6;
+  --bg-accent: #ffe1c4;
+  --card: #ffffff;
+  --text: #4a2c1d;
+  --muted: #8a6552;
+  --primary: #ff7a59;
+  --primary-dark: #e85d3c;
+  --sun: #ffd166;
+  --done: #b8a597;
+  --border: #f3d2b8;
+  --radius: 14px;
+  --tap: 48px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 0%, var(--sun) 0, transparent 40%),
+    radial-gradient(circle at 100% 30%, var(--bg-accent) 0, transparent 45%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+.app {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.9rem, 7vw, 2.6rem);
+  line-height: 1.15;
+  color: var(--primary-dark);
+}
+
+.tagline {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Formulär */
+.add-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.add-form input {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--tap);
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 1rem; /* minst 16px så att iOS inte zoomar */
+  color: var(--text);
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.add-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(255, 122, 89, 0.2);
+}
+
+/* Knappar */
+.btn {
+  min-height: var(--tap);
+  padding: 10px 18px;
+  font: inherit;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 0.15s, transform 0.1s;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn:focus-visible,
+.delete:focus-visible,
+.item input:focus-visible {
+  outline: 3px solid var(--primary-dark);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  flex-shrink: 0;
+  color: #fff;
+  background: var(--primary);
+  box-shadow: 0 3px 0 var(--primary-dark);
+}
+
+.btn-primary:active {
+  background: var(--primary-dark);
+}
+
+.btn-secondary {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  color: var(--text);
+  background: var(--sun);
+  box-shadow: 0 3px 0 #e6b54a;
+}
+
+.btn-secondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.summary {
+  margin: 0 0 8px;
+  min-height: 1.5em;
+  font-size: 0.95rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Lista */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 6px rgba(74, 44, 29, 0.06);
+}
+
+.item.new {
+  animation: pop 0.2s ease-out;
+}
+
+.item label {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 8px 4px 8px 14px;
+  cursor: pointer;
+}
+
+.item input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.item-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.item.done {
+  background: #fffaf4;
+  border-style: dashed;
+}
+
+.item.done .item-name {
+  color: var(--done);
+  text-decoration: line-through;
+}
+
+.delete {
+  flex-shrink: 0;
+  width: var(--tap);
+  height: var(--tap);
+  margin-right: 4px;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.delete:active {
+  color: #fff;
+  background: var(--primary);
+}
+
+@media (hover: hover) {
+  .btn-primary:hover {
+    background: var(--primary-dark);
+  }
+
+  .delete:hover {
+    color: #fff;
+    background: var(--primary);
+  }
+}
+
+.empty {
+  margin: 24px 0 0;
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+@keyframes pop {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item { animation: none; }
+  .btn { transition: none; }
+}
+
+@media (min-width: 640px) {
+  .app {
+    padding-top: 48px;
+  }
+}

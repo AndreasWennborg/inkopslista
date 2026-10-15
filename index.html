@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="En enkel och glad inköpslista som sparas i webbläsaren.">
+  <meta name="theme-color" content="#ff7a59">
+  <title>Inköpslistan 🛒</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1><span aria-hidden="true">🛒</span> Inköpslistan</h1>
+      <p class="tagline">Skriv upp, handla, bocka av!</p>
+    </header>
+
+    <form id="add-form" class="add-form" autocomplete="off">
+      <label for="item-input" class="visually-hidden">Ny vara</label>
+      <input
+        id="item-input"
+        type="text"
+        placeholder="Vad behöver du köpa?"
+        maxlength="100"
+        enterkeyhint="done"
+      >
+      <button type="submit" class="btn btn-primary">Lägg till</button>
+    </form>
+
+    <p id="summary" class="summary" aria-live="polite"></p>
+
+    <ul id="list" class="list"></ul>
+
+    <p id="empty" class="empty" hidden>
+      <span aria-hidden="true">🍓</span> Listan är tom, dags att handla något gott!
+    </p>
+
+    <button id="clear-done" type="button" class="btn btn-secondary">Rensa avbockade</button>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
